@@ -1,4 +1,4 @@
-package ru.kaiten.entity
+package ru.kaiten.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

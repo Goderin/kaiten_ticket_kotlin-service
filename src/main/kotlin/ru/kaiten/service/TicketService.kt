@@ -8,8 +8,8 @@ import org.springframework.util.MultiValueMap
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.WebClientResponseException
-import ru.kaiten.entity.CreateTicketResponse
-import ru.kaiten.entity.KaitenUrl
+import ru.kaiten.dto.CreateTicketResponse
+import ru.kaiten.dto.KaitenUrl
 import ru.kaiten.exception.CreateTicketException
 import ru.kaiten.exception.EntityIllegalArgumentException
 import ru.kaiten.exception.KaitenException
