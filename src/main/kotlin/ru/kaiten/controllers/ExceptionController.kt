@@ -11,31 +11,32 @@ import ru.kaiten.exception.*
 @ControllerAdvice
 class ExceptionController {
 
-    @ExceptionHandler(KaitenException::class)
+    @ExceptionHandler(AuthException::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
-    fun handleKaitenExceptions(ex: KaitenException): ErrorResponse {
-        return createErrorResponseEntity(ex, ex.statusCode?: HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleAuthException(ex: AuthException): ErrorResponse {
+        return createErrorResponseEntity(ex, HttpStatus.UNAUTHORIZED)
     }
 
-    @ExceptionHandler(EntityIllegalArgumentException::class)
+    @ExceptionHandler(ClientNotFoundException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    fun handleEntityIllegalArgumentException(ex: EntityIllegalArgumentException): ErrorResponse {
+    fun handleEntityIllegalArgumentException(ex: ClientNotFoundException): ErrorResponse {
         return createErrorResponseEntity(ex, HttpStatus.BAD_REQUEST)
     }
 
-    @ExceptionHandler(CreateTicketException::class)
+    @ExceptionHandler(CreateEntryException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    fun handleCreateTicketException(ex: CreateTicketException): ErrorResponse {
+    fun handleCreateTicketException(ex: CreateEntryException): ErrorResponse {
         return createErrorResponseEntity(ex, HttpStatus.BAD_REQUEST)
     }
 
-    @ExceptionHandler(GetConfigException::class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(InvalidArgumentException::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    fun handleGetConfigException(ex: GetConfigException): ErrorResponse {
-        return createErrorResponseEntity(ex, HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleEntityIllegalArgumentException(ex: InvalidArgumentException): ErrorResponse {
+        return createErrorResponseEntity(ex, HttpStatus.BAD_REQUEST)
     }
 
     private fun createErrorResponseEntity(ex: BaseException, httpStatus: HttpStatus): ErrorResponse {
