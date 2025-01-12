@@ -11,7 +11,7 @@ class BoardClientImpl(private val webClient: WebClient) : BoardClient {
         val response = webClient.post()
             .uri("$url/api/board")
             .headers { headers ->
-                headers.setBearerAuth(token)
+                headers.set("Authorization", "API-Key $token")
             }
             .bodyValue(
                 mapOf(
@@ -21,7 +21,7 @@ class BoardClientImpl(private val webClient: WebClient) : BoardClient {
             )
             .retrieve()
             .onStatus(HttpStatus::isError) { clientResponse ->
-                clientResponse.bodyToMono(String::class.java).flatMap { body ->
+                clientResponse.bodyToMono(String::class.java).flatMap { _ ->
                     Mono.error(CreateEntryException("Create board error"))
                 }
             }

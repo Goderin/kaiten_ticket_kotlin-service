@@ -12,7 +12,7 @@ class SpaceClientImpl(private val webClient: WebClient) : SpaceClient {
         val response = webClient.post()
             .uri("$url/api/space")
             .headers { headers ->
-                headers.setBearerAuth(token)
+                headers.set("Authorization", "API-Key $token")
             }
             .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(mapOf("title" to title))

@@ -1,5 +1,5 @@
 [settings]
-default_endpoint = 'https://stage.bytes2b.ru'
+default_endpoint = 'https://tododdler.bytes2b.ru'
 fernet_key = 'PgKi9XHK7409xmwvhpzZQfuO2yekPQxtjmocjI1e6Fo='
 auth_url = 'https://auth.bytes2b.ru/realms/Dev/protocol/openid-connect/token'
 profile_url = 'https://auth.bytes2b.ru/realms/Dev/users/profile'

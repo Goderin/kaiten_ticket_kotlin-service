@@ -17,7 +17,7 @@ class KaitenClient(private val webClient: WebClient): CardClient {
         val response = webClient.post()
             .uri("$url/api/card")
             .headers { headers ->
-                headers.setBearerAuth(token)
+                headers.set("Authorization", "API-Key $token")
             }
             .contentType(MediaType.APPLICATION_JSON)
             .bodyValue(bodyRequest)
@@ -49,7 +49,7 @@ class KaitenClient(private val webClient: WebClient): CardClient {
         webClient.post()
             .uri("$url/api/card/$cardId/attachment")
             .headers { headers ->
-                headers.setBearerAuth(token)
+                headers.set("Authorization", "API-Key $token")
             }
             .contentType(MediaType.MULTIPART_FORM_DATA)
             .bodyValue(body)
@@ -65,7 +65,7 @@ class KaitenClient(private val webClient: WebClient): CardClient {
         webClient.post()
             .uri("$url/api/card/$parentCardId/children")
             .headers { headers ->
-                headers.setBearerAuth(token)
+                headers.set("Authorization", "API-Key $token")
             }
             .retrieve()
             .onStatus(HttpStatus::isError) { clientResponse ->
