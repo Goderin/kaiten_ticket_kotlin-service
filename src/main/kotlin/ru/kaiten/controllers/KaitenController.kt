@@ -31,7 +31,8 @@ class KaitenController(
             title = title,
             description = description,
             token = token,
-            files = files
+            files = files,
+            spaceId = 63
         )
     }
 }

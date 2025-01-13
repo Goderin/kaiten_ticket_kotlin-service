@@ -11,6 +11,7 @@ interface CardProcessor {
         token: String,
         title: String,
         description: String,
-        files: List<MultipartFile>
+        files: List<MultipartFile>,
+        spaceId: Int?
     ): CreateCardResponse
 }

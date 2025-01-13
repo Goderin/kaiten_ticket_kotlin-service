@@ -21,7 +21,8 @@ class CardProcessorImpl(
         token: String,
         title: String,
         description: String,
-        files: List<MultipartFile>
+        files: List<MultipartFile>,
+        spaceId: Int?
     ): CreateCardResponse {
         ValidationUtil.checkNotEmpty(tomlConfig.defaultUrl, "tomlConfig.defaultUrl")
         ValidationUtil.checkNotEmpty(systemType, "systemType")
@@ -30,15 +31,16 @@ class CardProcessorImpl(
         ValidationUtil.checkNotEmpty(description, "description")
         ValidationUtil.checkNotNull(files, "files")
 
-        val spaceId = spaceService.createSpace(
-            url = tomlConfig.defaultUrl,
-            token = token
-        )
+        val checkedSpaceId: Int = spaceId
+            ?: spaceService.createSpace(
+                url = tomlConfig.defaultUrl,
+                token = token
+            )
 
         val boardId = boardService.createBoard(
             title = "board$spaceId",
             token = token,
-            spaceId = spaceId,
+            spaceId = checkedSpaceId,
             url = tomlConfig.defaultUrl
         )
 
